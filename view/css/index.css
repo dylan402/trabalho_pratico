@@ -1,0 +1,21 @@
+.welcome {
+    background: linear-gradient(to left, #e9ecef, #e9ecdf);
+}
+
+.welcome h1, p {
+    padding-left: 18px;
+}
+
+.card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.form-signin input[type=text], input[type=password] {
+    border-radius: 3rem;
+}
+
+.form-signin button[type=submit] {
+    border-radius: 5rem;
+}
