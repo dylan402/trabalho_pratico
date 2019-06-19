@@ -1,12 +1,12 @@
 {
   "name": "trabalho_pratico",
   "version": "1.0.0",
-  "description": "Trabalho prático realizado em NodeJS",
-  "main": "index.js",
+  "description": "Trabalho prático feito em NodeJS",
+  "main": "server.js",
   "author": "Dylan S.",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon main.js"
+    "dev": "nodemon ./server.js"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
