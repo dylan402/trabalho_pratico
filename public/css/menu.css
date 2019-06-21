@@ -1,0 +1,23 @@
+.fa-edit {
+    color: darkgreen;
+}
+
+.fa-trash-alt {
+    color: firebrick;
+}
+
+.disponivel {
+    color: lime;
+    text-transform: uppercase;
+}
+
+.indisponivel {
+    color: firebrick;
+    text-transform: uppercase;
+}
+
+.card-menu {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}

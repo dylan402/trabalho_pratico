@@ -1,11 +1,3 @@
-.welcome {
-    background: linear-gradient(to right, #e9ecdf, #e9ecef);
-}
-
-.welcome h1, p {
-    padding-left: 18px;
-}
-
 .card-signin {
     border: 0;
     border-radius: 1rem;

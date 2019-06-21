@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="/css/menu.css" />
+
+    <link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/fontawesome/css/regular.css" rel="stylesheet">
+
+    <title>Menu Principal</title>
+</head>
+
+<body>
+    <div class="container-fluid header">
+        <h1 class="display-4">Menu Principal</h1>
+        <p class="lead">Este é o menu principal, nele você pode realizar cadastros, edições, exclusões e vizualizar
+            todos os veículos!</p>
+        <hr class="my-4">
+    </div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="card card-menu my-5" style="width: 100em;">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Menu Principal</h5>
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="" role="tab"
+                                aria-controls="nav-home" aria-selected="true" style="pointer-events: none;">Lista de
+                                veículos cadastrados</a>
+                            <a class="nav-item nav-link" id="nav-add-tab" data-toggle="tab" href="/menu/add" role="tab"
+                                aria-controls="nav-add" aria-selected="false">Cadastrar veículo</a>
+                        </div>
+                    </nav>
+                </div>
+
+                <div class="card-body">
+                    <div class="col">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Placa</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Volkswagem Gol G6 2015</td>
+                                    <td>Carro</td>
+                                    <td>ZZZ-0000</td>
+                                    <td class="disponivel">DISPONÍVEL</td>
+                                    <td>
+                                        <a href="#"><i class="far fa-edit fa-2x mr-3"></i></a>
+                                        <a href="#"><i class="far fa-trash-alt fa-2x"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Locomotiva Classe A4 4468</td>
+                                    <td>Trem</td>
+                                    <td>Não tem</td>
+                                    <td class="indisponivel">indisponível</td>
+                                    <td>
+                                        <a href="#"><i class="far fa-edit fa-2x mr-3"></i></a>
+                                        <a href="#"><i class="far fa-trash-alt fa-2x"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Boeing 747-8F</td>
+                                    <td>Avião</td>
+                                    <td>Não tem</td>
+                                    <td class="disponivel">disponível</td>
+                                    <td>
+                                        <a href="#"><i class="far fa-edit fa-2x mr-3"></i></a>
+                                        <a href="#"><i class="far fa-trash-alt fa-2x"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

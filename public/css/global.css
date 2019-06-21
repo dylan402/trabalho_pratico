@@ -1,0 +1,11 @@
+.header {
+    background: linear-gradient(to right, #e9ecdf, #e9ecef);
+}
+
+.welcome h1, p {
+    padding-left: 18px;
+}
+
+body {
+    background-color: #DFDFDF;
+}

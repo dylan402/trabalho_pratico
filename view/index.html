@@ -6,21 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- jQuery -->
+    <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
 
     <title>Página inicial</title>
 </head>
 
 <body>
 
-    <div class="container-fluid welcome">
+    <div class="container-fluid header">
         <h1 class="display-4">Seja bem-vindo!</h1>
-        <p class="lead">Logue para poder cadastrar, editar, excluir ou listar carros.</p>
+        <p class="lead">Logue para poder cadastrar, editar, excluir ou listar veículos.</p>
         <hr class="my-4">
     </div>
 
@@ -32,7 +36,7 @@
                 </div>
                 <div class="card-body">
                     <div class="col">
-                        <form class="form-signin needs-validation" method="POST" action="" novalidate>
+                        <form class="form-signin needs-validation ajax" method="POST" action="" novalidate>
                             <div class="form-group">
                                 <label for="username">Usuário</label>
                                 <input type="text" id="username" name="username" class="form-control form-control-sm"
@@ -53,10 +57,37 @@
                             </div>
 
                             <div class="form-group mt-4 mb-3">
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase">Logar</button>
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase"
+                                    formaction="/auth/login" id="loginSubmit">Logar</button>
+
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block text-uppercase"
+                                    formaction="/auth/register" id="registerSubmit">Registrar</button>
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Registro de usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="registerModalText">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
@@ -83,6 +114,7 @@
         })();
     </script>
 
+    <script type="text/javascript" src="/js/validateRegistration.js"></script>
 </body>
 
 <footer>

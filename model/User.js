@@ -1,12 +1,20 @@
-const Sequelize = require("sequelize");
-const database = require('../config/database.js');
+const mongoose = require("./database");
 
-const sequelize = new Sequelize(database);
+const UserSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+});
 
-let validate = sequelize.authenticate()
-    .then(() => {
-        console.log("Conectado com sucesso ao banco de dados.");
-    })
-    .catch(err => {
-        console.log(err);
-    });
+const User = mongoose.model("users", UserSchema);
+
+module.exports = User;
