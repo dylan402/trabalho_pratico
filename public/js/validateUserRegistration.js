@@ -3,12 +3,17 @@ $('form.ajax button').click(function () {
 });
 
 $('form.ajax').on('submit', (event) => {
+
+    const form = $('form.ajax');
+
+    if (form[0].checkValidity() === false) {
+        return false;
+    }
+
     event.preventDefault();
 
-    console.log($(location).attr('href'));
-
-    let url = $('form.ajax').attr('action'),
-        method = $('form.ajax').attr('method'),
+    const url = form.attr('action'),
+        method = form.attr('method'),
         data = {};
 
     $("input").each((index, value) => {
@@ -19,7 +24,8 @@ $('form.ajax').on('submit', (event) => {
         url: url,
         method: method,
         data: data,
-        success: (response) => {
+
+        success: (res) => {
 
             const baseURL = $(location).attr('href').substr(0, $(location).attr('href').length - 1);
             const loginURL = (baseURL + $('#loginSubmit').attr('formAction')).toString();
@@ -31,13 +37,10 @@ $('form.ajax').on('submit', (event) => {
                 $('#registerModal').modal('show');
             }
         },
-        error: (response) => {
-            $('#registerModalText').text(response.responseJSON.error);
+
+        error: (res) => {
+            $('#registerModalText').text(res.responseJSON.error);
             $('#registerModal').modal('show');
         },
-    }).done(() => {
-        console.log("Informações enviadas.");
-    }).fail(() => {
-        console.log("Falha ao registrar-se.");
     });
 });

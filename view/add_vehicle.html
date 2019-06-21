@@ -6,11 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- jQuery -->
+    <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/global.css" />
     <link rel="stylesheet" type="text/css" href="/css/menu.css" />
+
+    <!-- JS -->
+    <!-- <script defer type="text/javascript" src="/js/validateVehicleRegistration.js"></script> -->
 
     <title>Cadastrar veículo</title>
 </head>
@@ -28,20 +36,16 @@
             <div class="card card-menu my-5" style="width: 50em;">
                 <div class="card-body">
                     <h5 class="card-title text-center">Menu Principal</h5>
-                    <nav>
-                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="/menu" role="tab"
-                                aria-controls="nav-home" aria-selected="false">Lista de veículos cadastrados</a>
-                            <a class="nav-item nav-link active" id="nav-add-tab" data-toggle="tab" href="" role="tab"
-                                aria-controls="nav-add" aria-selected="true" style="pointer-events: none;">Cadastrar
-                                veículo</a>
-                        </div>
+                    <nav class="nav nav-tabs">
+                        <a class="nav-item nav-link" href="/menu">Lista de veículos cadastrados</a>
+                        <a class="nav-item nav-link active disabled" href="">Cadastrar veículo</a>
                     </nav>
                 </div>
 
                 <div class="card-body">
                     <div class="col">
-                        <form class="form-signin needs-validation" method="POST" action="/vehicle/register" novalidate>
+                        <form class="form-signin needs-validation ajax" method="POST" action="/vehicle/register"
+                            novalidate>
                             <div class="form-group">
                                 <label for="name">Nome do veículo</label>
                                 <input type="text" id="name" name="name" class="form-control form-control-sm"
@@ -75,20 +79,22 @@
                                 </div>
                             </div>
 
-                            <label class="mt-1">Status</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status-disponivel"
-                                    value="true" checked>
-                                <label class="form-check-label" for="status-disponivel">
-                                    Disponível
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="status" id="status-indisponivel"
-                                    value="false">
-                                <label class="form-check-label" for="status-indisponivel">
-                                    Indisponível
-                                </label>
+                            <div class="form-group">
+                                <label class="mt-1">Status</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" id="status-disponivel"
+                                        value="true" checked>
+                                    <label class="form-check-label" for="status-disponivel">
+                                        Disponível
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="status" id="status-indisponivel"
+                                        value="false">
+                                    <label class="form-check-label" for="status-indisponivel">
+                                        Indisponível
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="form-group mt-4 mb-3">
@@ -97,6 +103,27 @@
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Registro de veículo</h5>
+                    <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="registerModalText">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
