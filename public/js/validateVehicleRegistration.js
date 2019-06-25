@@ -35,4 +35,4 @@ $('form.ajax').on('submit', (event) => {
 
 $('#registerModal').on('hidden.bs.modal', function () {
     window.location.reload();
-})
+});

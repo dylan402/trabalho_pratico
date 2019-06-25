@@ -33,7 +33,7 @@
                     <h5 class="card-title text-center">Menu Principal</h5>
                     <nav class="nav nav-tabs">
                         <a class="nav-item nav-link active disabled" href="">Lista de veículos cadastrados</a>
-                        <a class="nav-item nav-link" href="/menu/add">Cadastrar veículo</a>
+                        <a class="nav-item nav-link" href="/menu/new">Cadastrar veículo</a>
                     </nav>
                 </div>
 
@@ -51,39 +51,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <% let i = 1; %>
+                                <% result.forEach((car) => {%>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Volkswagem Gol G6 2015</td>
-                                    <td>Carro</td>
-                                    <td>ZZZ-0000</td>
+                                    <th scope="row"><%= i++ %></th>
+                                    <td><%= car.name %></td>
+                                    <td><%= car.type %></td>
+                                    <td><%= car.license_plate %></td>
+                                    <% if(car.status === true) { %>
                                     <td class="disponivel">DISPONÍVEL</td>
+                                    <% } else {%>
+                                    <td class="indisponivel">INDISPONÍVEL</td>
+                                    <% } %>
                                     <td>
                                         <a href="#"><i class="far fa-edit fa-2x mr-3"></i></a>
                                         <a href="#"><i class="far fa-trash-alt fa-2x"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Locomotiva Classe A4 4468</td>
-                                    <td>Trem</td>
-                                    <td>Não tem</td>
-                                    <td class="indisponivel">indisponível</td>
-                                    <td>
-                                        <a href="#"><i class="far fa-edit fa-2x mr-3"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt fa-2x"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Boeing 747-8F</td>
-                                    <td>Avião</td>
-                                    <td>Não tem</td>
-                                    <td class="disponivel">disponível</td>
-                                    <td>
-                                        <a href="#"><i class="far fa-edit fa-2x mr-3"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt fa-2x"></i></a>
-                                    </td>
-                                </tr>
+                                <% }); %>
                             </tbody>
                         </table>
                     </div>
