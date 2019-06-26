@@ -6,14 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <!-- jQuery -->
+    <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
+
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <!-- FontAwesome -->
+    <link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="/fontawesome/css/regular.css" rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/global.css" />
     <link rel="stylesheet" type="text/css" href="/css/menu.css" />
 
-    <link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="/fontawesome/css/regular.css" rel="stylesheet">
+    <!-- JS -->
+    <script defer type="text/javascript" src="/js/DeleteAndUpdate.js"></script>
 
     <title>Menu Principal</title>
 </head>
@@ -54,24 +63,53 @@
                                 <% let i = 1; %>
                                 <% result.forEach((car) => {%>
                                 <tr>
-                                    <th scope="row"><%= i++ %></th>
-                                    <td><%= car.name %></td>
-                                    <td><%= car.type %></td>
-                                    <td><%= car.license_plate %></td>
+                                    <th scope="row"><%- i++ %></th>
+                                    <td><%- car.name %></td>
+                                    <td><%- car.type %></td>
+                                    <td><%- car.license_plate %></td>
                                     <% if(car.status === true) { %>
                                     <td class="disponivel">DISPONÍVEL</td>
                                     <% } else {%>
                                     <td class="indisponivel">INDISPONÍVEL</td>
                                     <% } %>
                                     <td>
-                                        <a href="#"><i class="far fa-edit fa-2x mr-3"></i></a>
-                                        <a href="#"><i class="far fa-trash-alt fa-2x"></i></a>
+                                        <div class="row">
+                                            <form action="/menu/<%- car.id %>/update" method="GET">
+                                                <button type="submit"
+                                                    class="btn btn-link far fa-edit fa-2x mr-4"></button>
+                                            </form>
+                                            <form class="delete" action="/menu/<%- car.id %>/delete" method="POST">
+                                                <button type="submit"
+                                                    class="btn btn-link far fa-trash-alt fa-2x"></button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 <% }); %>
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Exclusão de veículo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="deleteModalText">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>

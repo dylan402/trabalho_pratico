@@ -21,9 +21,9 @@ $('form.ajax').on('submit', (event) => {
     });
 
     $.ajax({
-        url: url,
-        method: method,
-        data: data,
+        url,
+        method,
+        data,
 
         success: (res) => {
 

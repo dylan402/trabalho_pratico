@@ -17,9 +17,9 @@ $('form.ajax').on('submit', (event) => {
     });
 
     $.ajax({
-        url: url,
-        method: method,
-        data: data,
+        url,
+        method,
+        data,
 
         success: (res) => {
             $('#registerModalText').text("Muito bem, veículo cadastrado com sucesso!");

@@ -9,7 +9,7 @@ exports.vehicle_register = async (req, res) => {
     try {
         await Vehicle.create(req.body);
 
-        return res.status(200).json({ success: true });
+        return res.status(200).send({ success: true });
     } catch (err) {
         return res.status(400).send(err);
     }
@@ -17,23 +17,37 @@ exports.vehicle_register = async (req, res) => {
 
 exports.vehicle_list = async (req, res) => {
     try {
-        let result = await Vehicle.find({});
-        return res.status(200).render(path.join(__dirname, '..', '/view/menu.ejs'), { result: result });
+        const query = await Vehicle.find({});
+        return res.status(200).render(path.join(__dirname, '..', '/view/menu.ejs'), { result: query });
+    } catch (err) {
+        return res.status(400).send(err);
+    }
+};
+
+exports.vehicle_start_update = async (req, res) => {
+    try {
+        const query = await Vehicle.findById(req.params.id);
+        return res.status(200).render(path.join(__dirname, '..', '/view/edit_vehicle.ejs'), { result: query });
     } catch (err) {
         return res.status(400).send(err);
     }
 };
 
 exports.vehicle_update = async (req, res) => {
-    await Vehicle.findByIdAndUpdate(req.params.id, { $set: req.body }, function (err, vehicle) {
-        if (err) return next(err);
-        res.send('Vehicle udpated.');
-    });
+    try {
+        await Vehicle.findByIdAndUpdate(req.params.id, req.body);
+
+        return res.status(200).send({ success: true });
+    } catch (err) {
+        return res.status(400).send({ error: "Não foi possivel atualizar o veículo." });
+    }
 };
 
 exports.vehicle_delete = async (req, res) => {
-    await Vehicle.findByIdAndRemove(req.params.id, function (err) {
-        if (err) return next(err);
-        res.send('Deleted successfully!');
-    })
+    const query = await Vehicle.findByIdAndDelete(req.params.id);
+    if (query !== null) {
+        return res.status(200).send({ success: true });
+    } else {
+        return res.status(400).send({ error: "Não foi possivel deletar o veículo." });
+    }
 };

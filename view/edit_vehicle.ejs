@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/css/menu.css" />
 
     <!-- JS -->
-    <script defer type="text/javascript" src="/js/validateVehicleRegistration.js"></script>
+    <script defer type="text/javascript" src="/js/DeleteAndUpdate.js"></script>
 
     <title>Cadastrar veículo</title>
 </head>
@@ -38,14 +38,15 @@
                     <h5 class="card-title text-center">Menu Principal</h5>
                     <nav class="nav nav-tabs">
                         <a class="nav-item nav-link" href="/menu">Lista de veículos cadastrados</a>
-                        <a class="nav-item nav-link active disabled" href="">Cadastrar veículo</a>
+                        <a class="nav-item nav-link" href="/menu/new">Cadastrar veículo</a>
+                        <a class="nav-item nav-link active disabled" href="">Editar veículo</a>
                     </nav>
                 </div>
 
                 <div class="card-body">
                     <div class="col">
-                        <form class="form-signin needs-validation ajax" method="POST" action="/menu/register"
-                            novalidate>
+                        <form class="form-signin needs-validation update" method="POST"
+                            action="/menu/<%- result.id %>/update" novalidate>
                             <div class="form-group">
                                 <label for="name">Nome do veículo</label>
                                 <input type="text" id="name" name="name" class="form-control form-control-sm"
@@ -56,9 +57,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="mt-1" for="veiculo">Tipo do veículo</label>
-                                <select class="custom-select" id="veiculo" name="type" required>
-                                    <option value="" selected disabled>Selecione um tipo de veículo</option>
+                                <label class="mt-1" for="type">Tipo do veículo</label>
+                                <select class="custom-select" id="type" name="type" required>
+                                    <option value="" disabled>Selecione um tipo de veículo</option>
                                     <option value="carro">Carro</option>
                                     <option value="moto">Moto</option>
                                     <option value="caminhao">Caminhão</option>
@@ -71,9 +72,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="mt-1" for="placa">Placa</label>
-                                <input type="text" id="placa" name="license_plate" class="form-control form-control-sm"
-                                    placeholder="Digite a placa do veículo" minlength="4" maxlength="10" required>
+                                <label class="mt-1" for="license_plate">Placa</label>
+                                <input type="text" id="license_plate" name="license_plate"
+                                    class="form-control form-control-sm" placeholder="Digite a placa do veículo"
+                                    minlength="4" maxlength="10" required>
                                 <div class="invalid-feedback">
                                     Por favor, digite a placa do veículo, de 4 a 10 digitos.
                                 </div>
@@ -82,16 +84,16 @@
                             <div class="form-group">
                                 <label class="mt-1">Status</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" id="status-disponivel"
-                                        value="true" checked>
-                                    <label class="form-check-label" for="status-disponivel">
+                                    <input class="form-check-input" type="radio" name="status" id="status_available"
+                                        value="true">
+                                    <label class="form-check-label" for="status_available">
                                         Disponível
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="status" id="status-indisponivel"
+                                    <input class="form-check-input" type="radio" name="status" id="status_unavailable"
                                         value="false">
-                                    <label class="form-check-label" for="status-indisponivel">
+                                    <label class="form-check-label" for="status_unavailable">
                                         Indisponível
                                     </label>
                                 </div>
@@ -99,7 +101,7 @@
 
                             <div class="form-group mt-4 mb-3">
                                 <button type="submit" class="btn btn-primary btn-block text-uppercase"
-                                    style="border-radius: 12px;">Cadastrar</button>
+                                    style="border-radius: 12px;">Editar veículo</button>
                             </div>
                         </form>
                     </div>
@@ -109,17 +111,17 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Registro de veículo</h5>
+                    <h5 class="modal-title" id="updateModalLabel">Edição de veículo</h5>
                     <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="registerModalText">
+                <div class="modal-body" id="updateModalText">
                     ...
                 </div>
                 <div class="modal-footer">
@@ -148,6 +150,21 @@
                 });
             }, false);
         })();
+
+        // Preencher dados do formulario
+
+        const resultStringify = '<%- JSON.stringify(result) %>';
+        const resultParsed = JSON.parse(resultStringify);
+
+        document.getElementById('name').value = resultParsed.name;
+        document.getElementById('type').value = resultParsed.type;
+        document.getElementById('license_plate').value = resultParsed.license_plate;
+
+        if (resultParsed.status === true) {
+            document.getElementById('status_available').checked = true;
+        } else {
+            document.getElementById('status_unavailable').checked = true;
+        }
     </script>
 </body>
 
