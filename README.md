@@ -11,3 +11,4 @@ Aplicação realizada em Node.js.
 - mongoose
 - bootstrap
 - jquery
+- fontawesome
