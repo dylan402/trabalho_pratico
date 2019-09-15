@@ -2,124 +2,89 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- jQuery -->
-    <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
-    <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/global.css" />
-    <link rel="stylesheet" type="text/css" href="/css/index.css" />
-
-    <!-- JS -->
-    <script defer type="text/javascript" src="/js/validateUserRegistration.js"></script>
-
-    <title>Página inicial</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- jQuery -->
+  <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/jquery-confirm/dist/jquery-confirm.min.css">
+  <script type="text/javascript" src="/jquery-confirm/dist/jquery-confirm.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+  <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="/css/global.css" />
+  <link rel="stylesheet" type="text/css" href="/css/index.css" />
+  <!-- JS -->
+  <script defer type="text/javascript" src="/js/index.js"></script>
+  <title>Página inicial</title>
 </head>
 
 <body>
-
-    <div class="container-fluid header">
-        <h1 class="display-4">Seja bem-vindo!</h1>
-        <p class="lead">Logue para poder cadastrar, editar, excluir ou listar veículos.</p>
-        <hr class="my-4">
-    </div>
-
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="card card-signin my-5" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Sign in</h5>
-                </div>
-                <div class="card-body">
-                    <div class="col">
-                        <form class="form-signin needs-validation ajax" method="POST" action="" novalidate>
-                            <div class="form-group">
-                                <label for="username">Usuário</label>
-                                <input type="text" id="username" name="username" class="form-control form-control-sm"
-                                    placeholder="USUÁRIO" minlength="4" maxlength="20" required>
-                                <div class="invalid-feedback">
-                                    Por favor, digite seu nome de usuário.
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Senha</label>
-                                <input type="password" id="password" name="password"
-                                    class="form-control form-control-sm" placeholder="SENHA" minlength="4"
-                                    maxlength="20" required>
-                                <div class="invalid-feedback">
-                                    Por favor, digite sua senha.
-                                </div>
-                            </div>
-
-                            <div class="form-group mt-4 mb-3">
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase"
-                                    formaction="/users/login" id="loginSubmit">Logar</button>
-
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block text-uppercase"
-                                    formaction="/users/register" id="registerSubmit">Registrar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+  <div class="container-fluid header">
+    <h1 class="display-4">Seja bem-vindo!</h1>
+    <p class="lead">Logue para poder cadastrar, editar, excluir ou listar veículos.</p>
+    <hr class="my-4">
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="card card-signin my-5" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title text-center">Sign in</h5>
         </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Registro de usuário</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="card-body">
+          <div class="col">
+            <form id="FormUsuario" class="form-signin needs-validation" novalidate>
+              <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" class="form-control form-control-sm"
+                  placeholder="USUÁRIO" minlength="4" maxlength="20" required>
+                <div class="invalid-feedback">
+                  Por favor, digite seu nome de usuário.
                 </div>
-                <div class="modal-body" id="registerModalText">
-                    ...
+              </div>
+              <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" class="form-control form-control-sm"
+                  placeholder="SENHA" minlength="4" maxlength="20" required>
+                <div class="invalid-feedback">
+                  Por favor, digite sua senha.
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                </div>
-            </div>
+              </div>
+              <div class="form-group mt-4 mb-3">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase" formaction="/users/login"
+                  id="loginSubmit">Logar</button>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase" formaction="/users/register"
+                  id="registerSubmit">Registrar</button>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
+  </div>
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
 </body>
-
-<footer>
-
-</footer>
 
 </html>

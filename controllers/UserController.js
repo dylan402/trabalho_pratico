@@ -1,28 +1,55 @@
-const User = require("../model/User");
-const UserDAO = require("../model/DAO/UserDAO");
+const User = require('../model/User');
+const UserDAO = require('../model/DAO/UserDAO');
 
-exports.user_register = async (req, res) => {
-    const { username } = req.body;
-    try {
-        if (await UserDAO.checkUserExists(User, username)) {
-            return res.status(400).send({ error: 'Usuário já cadastrado.' });
-        }
+exports.userRegister = async (req, res) => {
+  const data = req.body;
 
-        await User.create(req.body);
-        return res.status(200).json({ success: true });
-    } catch (err) {
-        return res.status(400).send({ error: 'Falha ao registrar.' });
+  if (data.username.length < 4 || data.username.length > 20) {
+    return res
+      .status(406)
+      .send('O campo Usuário deve conter entre 4 à 20 caracteres.');
+  } else if (data.password.length < 4 || data.username.length > 20) {
+    return res
+      .status(406)
+      .send('O campo Senha deve conter entre 4 à 20 caracteres.');
+  }
+
+  try {
+    if (await UserDAO.checkUserExists(User, data)) {
+      return res.status(406).send('Usuário já cadastrado.');
     }
+
+    await User.create(data);
+    return res.status(200).send('REGISTERED');
+  } catch (err) {
+    return res.status(406).send('Falha ao registrar.');
+  }
 };
 
-exports.user_login = async (req, res) => {
-    try {
-        if (await UserDAO.checkUserAndPassword(User, req.body) != null) {
-            return res.status(200).redirect('/menu');
-        } else {
-            return res.status(400).send({ error: 'Usuário não cadastrado!' });
-        }
-    } catch (err) {
-        return res.status(400).send({ error: 'Falha ao logar.' });
+exports.userLogin = async (req, res) => {
+  const data = req.body;
+
+  if (data.username.length < 4 || data.username.length > 20) {
+    return res
+      .status(406)
+      .send('O campo Usuário deve conter entre 4 à 20 caracteres.');
+  } else if (data.password.length < 4 || data.username.length > 20) {
+    return res
+      .status(406)
+      .send('O campo Senha deve conter entre 4 à 20 caracteres.');
+  }
+
+  try {
+    if (!(await UserDAO.checkUserExists(User, data))) {
+      return res.status(406).send('Usuário não existe no sistema.');
     }
+
+    if ((await UserDAO.compareUserAndPassword(User, data)) !== null) {
+      return res.status(202).send('LOGIN');
+    } else {
+      return res.status(404).send('A senha está incorreta.');
+    }
+  } catch (err) {
+    return res.status(406).send('Falha ao logar.');
+  }
 };

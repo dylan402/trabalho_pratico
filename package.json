@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./server.js"
+    "dev": "nodemon ./server.js",
+    "start": "node server.js"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.9.0",
+    "@fortawesome/fontawesome-free": "^5.10.2",
     "nodemon": "^1.19.1"
   },
   "dependencies": {
@@ -16,6 +17,18 @@
     "ejs": "^2.6.2",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
-    "mongoose": "^5.6.1"
-  }
+    "jquery-confirm": "^3.3.4",
+    "jquery-mask-plugin": "^1.14.16",
+    "mongoose": "^5.6.10"
+  },
+  "description": "O projeto consiste em um crud de diferentes tipos de veículos, como também cadastro e login de usuário.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylan402/trabalho_pratico.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/dylan402/trabalho_pratico/issues"
+  },
+  "homepage": "https://github.com/dylan402/trabalho_pratico#readme"
 }

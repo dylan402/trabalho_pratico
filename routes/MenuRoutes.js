@@ -1,18 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const menu_controller = require('../controllers/MenuController');
+const menuController = require('../controllers/MenuController');
 
-router.get('/', menu_controller.vehicle_list);
+router.get('/', menuController.renderMenuPageWithVehicleList);
 
-router.get('/new', menu_controller.vehicle_new);
+router.post('/save-vehicle', menuController.saveVehicle);
 
-router.post('/register', menu_controller.vehicle_register);
+router.post('/form-vehicle/', menuController.renderVehicleForm);
 
-router.get('/:id/update', menu_controller.vehicle_start_update);
+router.post('/form-vehicle/:id', menuController.renderVehicleForm);
 
-router.post('/:id/update', menu_controller.vehicle_update);
-
-router.post('/:id/delete', menu_controller.vehicle_delete);
+router.post('/:id/delete', menuController.deleteVehicle);
 
 module.exports = router;

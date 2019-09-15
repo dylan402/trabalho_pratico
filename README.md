@@ -1,14 +1,15 @@
-## CRUD de veículos
+# CRUD de veículos
 
 O projeto consiste em um crud de diferentes tipos de veículos, como também cadastro e login de usuário.
 
 Aplicação realizada em Node.js.
 
-##### Frameworks/Bibliotecas utilizadas:
-- express
+## Frameworks/Bibliotecas
+
+- Express
 - body-parser
-- ejs
-- mongoose
-- bootstrap
-- jquery
-- fontawesome
+- Ejs
+- Mongoose
+- Bootstrap
+- Jquery (Plugins: Mask e Confirm)
+- FontAwesome

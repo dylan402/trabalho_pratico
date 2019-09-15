@@ -1,0 +1,102 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="card card-menu" style="border-radius: 0 0 1rem 1rem;">
+      <div class="card-body">
+        <div class="col">
+          <form id="FormVeiculo" class="form-signin needs-validation" novalidate>
+            <input hidden name="id" value="<%=result._id%>">
+            <div class="form-group">
+              <label for="name">Nome do veículo</label>
+              <input type="text" id="name" name="name" class="form-control form-control-sm"
+                placeholder="Nome do veículo" minlength="4" maxlength="100" value="<%=result.name%>" required>
+              <div class="invalid-feedback">
+                Por favor, digite o nome do veículo, de 4 a 100 digitos.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="mt-1" for="veiculo">Tipo do veículo</label>
+              <select class="custom-select" id="veiculo" name="type" required>
+                <option value="" selected disabled>Selecione um tipo de veículo</option>
+                <option value="carro" <% if (result.type === 'carro') { %> selected <% } %>>Carro</option>
+                <option value="moto" <% if (result.type === 'moto') { %> selected <% } %>>Moto</option>
+                <option value="caminhao" <% if (result.type === 'caminhao') { %> selected <% } %>>Caminhão</option>
+                <option value="aviao" <% if (result.type === 'aviao') { %> selected <% } %>>Avião</option>
+                <option value="trem" <% if (result.type === 'trem') { %> selected <% } %>>Trem</option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor, escolha o tipo de veículo.
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="mt-1" for="placa">Placa</label>
+              <input type="text" id="placa" name="license_plate" class="form-control form-control-sm"
+                placeholder="Digite a placa do veículo" minlength="4" maxlength="10" value="<%=result.license_plate%>"
+                pattern="[A-Z]{3}-[0-9]{4}" required>
+              <div class="invalid-feedback">
+                Por favor, digite a placa do veículo, de 4 a 10 digitos.
+                <br>
+                Placa no formato: XXX-9999
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="mt-1">Status</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="status" id="status-disponivel" value="true" checked>
+                <label class="form-check-label" for="status-disponivel">
+                  Disponível
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="status" id="status-indisponivel" value="false"
+                  <% if (result.status === false) { %> checked <% } %>>
+                <label class="form-check-label" for="status-indisponivel">
+                  Indisponível
+                </label>
+              </div>
+            </div>
+            <div class="form-group mt-4 mb-3">
+              <%
+              if (!result) {
+              %>
+              <button type="submit" class="btn btn-primary btn-block text-uppercase"
+                style="border-radius: 12px;">Cadastrar</button>
+              <% } else { %>
+              <button type="submit" class="btn btn-primary btn-block text-uppercase" style="border-radius: 12px;">Editar
+                veículo</button>
+              <% } %>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function () {
+    $('#FormVeiculo').on('submit', function () {
+      event.preventDefault();
+
+      if (this.checkValidity() === false) {
+        return false;
+      }
+
+      $.ajax({
+        url: '/menu/save-vehicle',
+        method: 'POST',
+        data: $(this).serialize(),
+        cache: false,
+        dataType: 'html',
+        success: response => {
+          $.alert({
+            title: 'Registro de veículo',
+            content: response,
+            onClose: () => (window.location.href = '/menu'),
+          });
+        },
+        error: response => {
+          $.alert(response.responseText, 'Registro de veículo');
+        },
+      });
+    });
+  });
+</script>
